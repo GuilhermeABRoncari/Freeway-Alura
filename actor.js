@@ -21,6 +21,10 @@ function collideValidator() {
         hit = collideRectCircle(xCars[i], yCars[i], carLength, carHight, xActor, yActor, 15);
         if (hit) {
             resetActor();
+            collisionSound.play();
+            if (noZeroPoints()) {
+                actorPoints -= 1;
+            }
         }
     }
 }
@@ -38,6 +42,11 @@ function showScore() {
 function scorepoints() {
     if (yActor < 15) {
         actorPoints += 1;
+        scoreSound.play();
         resetActor();
     }
+}
+
+function noZeroPoints() {
+    return actorPoints > 0;
 }
